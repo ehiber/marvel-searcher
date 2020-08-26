@@ -1,10 +1,11 @@
 const webpack = require('webpack');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const PrettierPlugin = require("prettier-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+
 module.exports = merge(common, {
     mode: 'development',
     devtool: 'cheap-module-source-map',
@@ -18,7 +19,7 @@ module.exports = merge(common, {
         new FriendlyErrorsWebpackPlugin(),
         new ErrorOverlayPlugin(),
         new PrettierPlugin({
-            parser: "babylon",
+            parser: "babel",
             printWidth: 120,             // Specify the length of line that the printer will wrap on.
             tabWidth: 4,                // Specify the number of spaces per indentation-level.
             useTabs: true,              // Indent lines with tabs instead of spaces.
