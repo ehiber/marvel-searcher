@@ -1,8 +1,16 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	
 	return {
-		store: {},
-		actions: {}
+		store: {
+			favorite: false,
+		},
+		actions: {
+			// USADA PARA ESCOGER FAVORITOS
+			setFavorite: (favorite) => {
+				setStore({
+					favorite: !favorite,
+				});
+			},
+		},
 	};
 };
 

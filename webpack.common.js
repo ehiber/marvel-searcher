@@ -29,18 +29,29 @@ module.exports = {
             }
         },
         {
-          test: /\.(css|scss)$/, use: [{
-                loader: "style-loader" // creates style nodes from JS strings
-          }, {
-                loader: "css-loader" // translates CSS into CommonJS
-          }, {
-                loader: "sass-loader" // compiles Sass to CSS
-          }, {
-                loader: MiniCSSExtractPlugin.loader
-          }, {
-                loader: 'resolve-url-loader',
-        }]
-         
+            test:/\.css$/,
+            exclude:/node_modules/,
+            use: [
+                {
+                  loader: MiniCssExtract.loader,
+                  options: {
+                    publicPath: (resourcePath, context) => {
+                        return path.relative(path.dirname(resourcePath), context) + '/'
+                        },
+                    }
+                },
+                "css-loader"
+            ]
+           
+        },
+        { 
+            test: /\.scss$/, 
+            loader: [
+                MiniCSSExtractPlugin.loader,
+                "css-loader",
+                'resolve-url-loader',
+                'sass-loader'
+            ]
         }, //css only files
         {
             test: /\.(gif|png|jpe?g|svg)$/i,
