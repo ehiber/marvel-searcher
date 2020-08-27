@@ -8,10 +8,6 @@ export const Navbar = styled.div`
 	margin-top: 13px;
 	background-color: white;
 	border-bottom: 2px rgb(235, 235, 235) solid;
-
-	form {
-		width: 100%;
-	}
 `;
 
 export const InputHeroe = styled.input`
