@@ -1,21 +1,4 @@
 import styled from "styled-components";
-import NavbarMarvel from "./NavbarMarvel";
-
-export const StyledNavbarMarvel = styled(NavbarMarvel)`
-
-    .search {
-        @extend %fa-icon;
-        @extend .fas;
-    
-        &::after {
-            content: fa-content($fa-var-search);
-        }
-    }
-
-    form{
-        width: 100%;
-        
-`;
 
 export const Navbar = styled.div`
 	display: flex;
@@ -25,14 +8,10 @@ export const Navbar = styled.div`
 	margin-top: 13px;
 	background-color: white;
 	border-bottom: 2px rgb(235, 235, 235) solid;
-	@media (max-width: 500px) {
-		flex-direction: column;
-		height: 120px;
-	}
-`;
 
-export const Form = styled.form`
-	width: 100%;
+	form {
+		width: 100%;
+	}
 `;
 
 export const InputHeroe = styled.input`
@@ -48,7 +27,12 @@ export const InputHeroe = styled.input`
 	font-size: medium;
 
 	::placeholder {
+		font-size: 2hv;
 		color: rgb(224, 224, 224);
+	}
+
+	@media (max-width: 500px) {
+		width: 70%;
 	}
 `;
 
@@ -57,8 +41,18 @@ export const IconNavbar = styled.img`
 	height: 80px;
 	margin: -20px 0 0 17px;
 	padding-right: 20px;
+	@media (max-width: 500px) {
+		margin: 0 0 0 10px;
+		width: 50px;
+		height: 40px;
+		padding-right: 5px;
+	}
 `;
 
 export const Icon = styled.i`
+	color: rgb(138, 138, 138);
 	padding: 10px 80px;
+	@media (max-width: 500px) {
+		padding: 10px 20px;
+	}
 `;

@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import getState from "./flux.js";
 
@@ -16,6 +16,10 @@ const AppContextProvider = (props) => {
 				}),
 		})
 	);
+
+	useEffect(() => {
+		state.actions.fetchGetCharacters();
+	}, []);
 
 	return <AppContext.Provider value={state}>{props.children}</AppContext.Provider>;
 };

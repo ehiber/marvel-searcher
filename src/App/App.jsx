@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import AppContextProvider from "../store/appContext";
-import { StyledNavbarMarvel } from "../NavbarMarvel/Styled";
+import NavbarMarvel from "../components/NavbarMarvel/NavbarMarvel";
 
 const App = (props) => {
 	return (
 		<BrowserRouter>
 			<AppContextProvider>
-				<StyledNavbarMarvel />
+				<NavbarMarvel />
 				<Switch>
 					<Route exact path="/" render={() => <h1>Soy Home</h1>} />
 					<Route render={() => <h1>Not found!</h1>} />
