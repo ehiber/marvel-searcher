@@ -19,13 +19,16 @@ export const Home = (props) => {
 		});
 		return charactersToRenderFilter;
 	};
-	let randomCharacterToRender = Math.floor(Math.random() * 1493);
 
 	useEffect(() => {
 		if (store.characters.length == 1493) {
 			actions.setAllCharacters();
 		}
 	}, [store.characters.length]);
+
+	useEffect(() => {
+		actions.setRandomCharacterToRender();
+	}, []);
 
 	return (
 		<Fragment>
@@ -35,11 +38,11 @@ export const Home = (props) => {
 						store.inputHeroe == "" ? (
 							<CardCharacters
 								key={Math.random()}
-								localID={store.characters[randomCharacterToRender].localID}
-								name={store.characters[randomCharacterToRender].name}
-								cover={store.characters[randomCharacterToRender].cover}
-								isFavorite={store.characters[randomCharacterToRender].isFavorite}
-								url={store.characters[randomCharacterToRender].comics.collectionURI.replace(
+								localID={store.characters[store.randomCharacterToRender].localID}
+								name={store.characters[store.randomCharacterToRender].name}
+								cover={store.characters[store.randomCharacterToRender].cover}
+								isFavorite={store.characters[store.randomCharacterToRender].isFavorite}
+								url={store.characters[store.randomCharacterToRender].comics.collectionURI.replace(
 									"http://",
 									"https://"
 								)}

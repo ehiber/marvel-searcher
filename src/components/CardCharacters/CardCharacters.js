@@ -7,6 +7,7 @@ const CardCharacters = ({ localID, name, cover, isFavorite, url }) => {
 	const { store, actions } = useContext(AppContext);
 
 	const handelChangeFavorite = (e) => {
+		e.preventDefault();
 		actions.setIsFavorite(localID, !isFavorite);
 	};
 

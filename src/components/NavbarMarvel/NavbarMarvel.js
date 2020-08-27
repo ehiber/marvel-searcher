@@ -8,6 +8,9 @@ export const NavbarMarvel = () => {
 	const { store, actions } = useContext(AppContext);
 
 	const handleChangeInput = (e) => {
+		if (e.target.value === "") {
+			actions.setRandomCharacterToRender();
+		}
 		actions.setInputHeroe(e.target.value);
 	};
 

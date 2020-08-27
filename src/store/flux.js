@@ -8,6 +8,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			characters: [],
 			inputHeroe: "",
+			randomCharacterToRender: 0,
 			favorite: false,
 			allCharacters: false,
 		},
@@ -15,6 +16,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setFavorite: (favorite) => {
 				setStore({
 					favorite: !favorite,
+				});
+			},
+			setRandomCharacterToRender: () => {
+				setStore({
+					randomCharacterToRender: Math.floor(Math.random() * 1493),
 				});
 			},
 			setIsFavorite: (localID, isFavorite) => {
@@ -48,9 +54,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let limit = 100;
 				let offset = 0;
 				let getAllCharacters = 15; //Rounds to get all characters
-				let lengthCharacters = store.characters.length;
+
 				try {
 					for (let i = 0; i < getAllCharacters; i++) {
+						let lengthCharacters = store.characters.length;
 						let response = await fetch(
 							`${APIurlMarvel}${resourceType}?ts=${timeStamp}&limit=${limit}&offset=${offset}&apikey=${APIpublicKey}&hash=${hash}`,
 							{
