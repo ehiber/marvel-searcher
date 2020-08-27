@@ -9,17 +9,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 			characters: [],
 			inputHeroe: "",
 			favorite: false,
+			allCharacters: false,
 		},
 		actions: {
-			// USADA PARA ESCOGER FAVORITOS
 			setFavorite: (favorite) => {
 				setStore({
 					favorite: !favorite,
 				});
 			},
+			setIsFavorite: (localID, isFavorite) => {
+				let store = getStore();
+
+				let newList = store.characters.map((character) => {
+					if (character.localID === localID) {
+						character.isFavorite = isFavorite;
+					}
+
+					return character;
+				});
+
+				setStore({
+					characters: newList,
+				});
+			},
 			setInputHeroe: (newInput) => {
 				setStore({
 					inputHeroe: newInput,
+				});
+			},
+			setAllCharacters: () => {
+				setStore({
+					allCharacters: true,
 				});
 			},
 			fetchGetCharacters: async () => {
@@ -28,7 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let limit = 100;
 				let offset = 0;
 				let getAllCharacters = 15; //Rounds to get all characters
-
+				let lengthCharacters = store.characters.length;
 				try {
 					for (let i = 0; i < getAllCharacters; i++) {
 						let response = await fetch(
@@ -49,7 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							responseBodyDATA.results.map((character, index) => {
 								let newCharacter = {};
 
-								newCharacter["localID"] = index + 1;
+								newCharacter["localID"] = index + 1 + lengthCharacters;
 
 								newCharacter["id"] = character.id;
 

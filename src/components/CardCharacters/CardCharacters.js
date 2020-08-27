@@ -17,9 +17,9 @@ const CardCharacters = ({ localID, name, cover, isFavorite, url }) => {
 					<Img src={cover} />
 
 					{store.characters[localID - 1].isFavorite ? (
-						<Icon className="star-solid" onClick={handelChangeFavorite}></Icon>
+						<Icon className="fas fa-star" onClick={handelChangeFavorite}></Icon>
 					) : (
-						<Icon className="star-regular" onClick={handelChangeFavorite}></Icon>
+						<Icon className="far fa-star" onClick={handelChangeFavorite}></Icon>
 					)}
 
 					<Name>{name}</Name>

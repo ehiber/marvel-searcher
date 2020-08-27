@@ -18,7 +18,7 @@ export const NavbarMarvel = () => {
 	return (
 		<Navbar>
 			<Link to="/">
-				<IconNavbar src={marvel} className="icon-navbar-marvel" />
+				<IconNavbar src={marvel} />
 			</Link>
 
 			<InputHeroe
