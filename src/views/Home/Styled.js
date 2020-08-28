@@ -13,3 +13,31 @@ export const AllCards = styled.div`
 export const Container = styled.div`
 	padding: 50px;
 `;
+
+export const H1 = styled.h1`
+
+    text-aling:center;
+    -webkit-animation-duration: 1.3s;
+    animation-duration: 1.3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    animation-name: flash;
+    animation-iteration-count: infinite;
+
+    @-webkit-keyframes flash {
+        0%, 50%, 100% {
+            opacity: 1;
+        }   
+        25%, 75% {
+            opacity: 0;
+        }
+    }
+    @keyframes flash {
+        0%, 50%, 100% {
+            opacity: 1; 
+        }
+        25%, 75% {
+            opacity: 0;
+        }
+
+`;

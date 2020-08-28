@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { AppContext } from "../../store/appContext.js";
 import CardCharacters from "../../components/CardCharacters/CardCharacters";
-import { AllCards, Container } from "./Styled.js";
+import { AllCards, Container, H1 } from "./Styled.js";
 
 export const Home = (props) => {
 	const { store, actions } = useContext(AppContext);
@@ -62,7 +62,7 @@ export const Home = (props) => {
 							})
 						)
 					) : (
-						<h1>Hoola</h1>
+						<H1>The whole Marvel Universe is coming...</H1>
 					)}
 				</AllCards>
 			</Container>
