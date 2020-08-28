@@ -17,11 +17,11 @@ const CardCharacters = ({ localID, name, cover, isFavorite, url }) => {
 				<Container>
 					<Img src={cover} />
 
-					{store.characters[localID - 1].isFavorite ? (
+					{/* {store.characters[localID - 1].isFavorite ? (
 						<Icon className="fas fa-star" onClick={handelChangeFavorite}></Icon>
 					) : (
 						<Icon className="far fa-star" onClick={handelChangeFavorite}></Icon>
-					)}
+					)} */}
 
 					<Name>{name}</Name>
 				</Container>

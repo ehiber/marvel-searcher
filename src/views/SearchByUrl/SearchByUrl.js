@@ -1,12 +1,13 @@
 import React, { Fragment, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { AppContext } from "../../store/appContext.js";
+import { useRouteMatch } from "react-router-dom";
 import CardCharacters from "../../components/CardCharacters/CardCharacters";
 import { AllCards, Container, H1 } from "./Styled.js";
 
-export const Home = (props) => {
+export const SearchByURL = (props) => {
 	const { store, actions } = useContext(AppContext);
-
+	const match = useRouteMatch();
 	const charactersToRenderBySearch = (charactersToRender) => {
 		let charactersToRenderFilter = charactersToRender.filter((character) => {
 			let regEx = new RegExp(store.inputHeroe.trim(), "i");
@@ -21,34 +22,20 @@ export const Home = (props) => {
 	};
 
 	useEffect(() => {
-		if (store.characters.length == 1493) {
-			actions.setAllCharacters();
+		if (match.params.characters) {
+			actions.fetchGetCharactersBySearch(match.params.characters.split("&"));
+		} else {
+			actions.fetchGetCharactersBySearch(match.params.characters);
 		}
-	}, [store.characters.length]);
-
-	useEffect(() => {
-		actions.setRandomCharacterToRender();
 	}, []);
 
 	return (
 		<Fragment>
 			<Container>
 				<AllCards>
-					{store.allCharacters ? (
-						store.inputHeroe == "" ? (
-							<CardCharacters
-								key={Math.random()}
-								localID={store.characters[store.randomCharacterToRender].localID}
-								name={store.characters[store.randomCharacterToRender].name}
-								cover={store.characters[store.randomCharacterToRender].cover}
-								isFavorite={store.characters[store.randomCharacterToRender].isFavorite}
-								url={store.characters[store.randomCharacterToRender].comics.collectionURI.replace(
-									"http://",
-									"https://"
-								)}
-							/>
-						) : (
-							charactersToRenderBySearch(store.characters).map((character) => {
+					{store.searchByURL.done ? (
+						store.searchByURL.results.length !== 0 ? (
+							charactersToRenderBySearch(store.searchByURL.results).map((character) => {
 								return (
 									<CardCharacters
 										key={Math.random()}
@@ -60,9 +47,11 @@ export const Home = (props) => {
 									/>
 								);
 							})
+						) : (
+							<h1>Thanos disappeared the results of this search, try other parameters ;)</h1>
 						)
 					) : (
-						<H1>The whole Marvel Universe is coming...</H1>
+						<H1>JARVIS is handling the search...</H1>
 					)}
 				</AllCards>
 			</Container>
@@ -70,7 +59,7 @@ export const Home = (props) => {
 	);
 };
 
-export default Home;
+export default SearchByURL;
 
 CardCharacters.propTypes = {
 	localID: PropTypes.number,
