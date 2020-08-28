@@ -36,16 +36,7 @@ export const SearchByURL = (props) => {
 					{store.searchByURL.done ? (
 						store.searchByURL.results.length !== 0 ? (
 							charactersToRenderBySearch(store.searchByURL.results).map((character) => {
-								return (
-									<CardCharacters
-										key={Math.random()}
-										localID={character.localID}
-										name={character.name}
-										cover={character.cover}
-										isFavorite={character.isFavorite}
-										url={character.comics.collectionURI.replace("http://", "https://")}
-									/>
-								);
+								return <CardCharacters key={character.id} character={character} />;
 							})
 						) : (
 							<h1>Thanos disappeared the results of this search, try other parameters ;)</h1>
@@ -62,9 +53,5 @@ export const SearchByURL = (props) => {
 export default SearchByURL;
 
 CardCharacters.propTypes = {
-	localID: PropTypes.number,
-	name: PropTypes.string,
-	cover: PropTypes.string,
-	isFavorite: PropTypes.bool,
-	url: PropTypes.string,
+	character: PropTypes.object,
 };

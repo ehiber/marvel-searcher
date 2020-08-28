@@ -37,28 +37,12 @@ export const Home = (props) => {
 					{store.allCharacters ? (
 						store.inputHeroe == "" ? (
 							<CardCharacters
-								key={Math.random()}
-								localID={store.characters[store.randomCharacterToRender].localID}
-								name={store.characters[store.randomCharacterToRender].name}
-								cover={store.characters[store.randomCharacterToRender].cover}
-								isFavorite={store.characters[store.randomCharacterToRender].isFavorite}
-								url={store.characters[store.randomCharacterToRender].comics.collectionURI.replace(
-									"http://",
-									"https://"
-								)}
+								key={character.id}
+								character={store.characters[store.randomCharacterToRender]}
 							/>
 						) : (
 							charactersToRenderBySearch(store.characters).map((character) => {
-								return (
-									<CardCharacters
-										key={Math.random()}
-										localID={character.localID}
-										name={character.name}
-										cover={character.cover}
-										isFavorite={character.isFavorite}
-										url={character.comics.collectionURI.replace("http://", "https://")}
-									/>
-								);
+								return <CardCharacters key={character.id} character={character} />;
 							})
 						)
 					) : (
@@ -73,9 +57,5 @@ export const Home = (props) => {
 export default Home;
 
 CardCharacters.propTypes = {
-	localID: PropTypes.number,
-	name: PropTypes.string,
-	cover: PropTypes.string,
-	isFavorite: PropTypes.bool,
-	url: PropTypes.string,
+	character: PropTypes.object,
 };

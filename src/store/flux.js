@@ -13,33 +13,52 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			inputHeroe: "",
 			randomCharacterToRender: 0,
-			favorite: false,
+			favorites: {
+				characters: [],
+				comics: [],
+			},
 			allCharacters: false,
 		},
 		actions: {
-			setFavorite: (favorite) => {
-				setStore({
-					favorite: !favorite,
-				});
+			setFavoriteCharacter: (characters, action) => {
+				let store = getStore();
+				if (action === "replace") {
+					setStore({
+						favorites: {
+							characters: characters,
+							comics: store.favorites.comics,
+						},
+					});
+				} else {
+					setStore({
+						favorites: {
+							characters: [...store.favorites.characters, characters],
+							comics: store.favorites.comics,
+						},
+					});
+				}
+			},
+			setFavoriteComic: (comics, action) => {
+				let store = getStore();
+				if (action === "replace") {
+					setStore({
+						favorites: {
+							characters: store.favorites.characters,
+							comics: comics,
+						},
+					});
+				} else {
+					setStore({
+						favorites: {
+							characters: store.favorites.characters,
+							comics: [...store.favorites.comics, comics],
+						},
+					});
+				}
 			},
 			setRandomCharacterToRender: () => {
 				setStore({
 					randomCharacterToRender: Math.floor(Math.random() * 1493),
-				});
-			},
-			setIsFavorite: (localID, isFavorite) => {
-				let store = getStore();
-
-				let newList = store.characters.map((character) => {
-					if (character.localID === localID) {
-						character.isFavorite = isFavorite;
-					}
-
-					return character;
-				});
-
-				setStore({
-					characters: newList,
 				});
 			},
 			setInputHeroe: (newInput) => {
@@ -80,18 +99,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 							responseBodyDATA.results.map((character, index) => {
 								let newCharacter = {};
 
-								newCharacter["localID"] = index + 1 + lengthCharacters;
-
 								newCharacter["id"] = character.id;
-
 								newCharacter["name"] = character.name;
-
 								newCharacter["cover"] = character.thumbnail.path + "." + character.thumbnail.extension;
-
 								newCharacter["comics"] = character.comics;
-
-								newCharacter["isFavorite"] = false;
-
 								newCharacter["showModal"] = false;
 
 								setStore({ characters: [...store.characters, newCharacter] });
@@ -141,18 +152,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 							responseBodyDATA.results.map((character, index) => {
 								let newCharacter = {};
 
-								newCharacter["localID"] = index + 1;
-
 								newCharacter["id"] = character.id;
-
 								newCharacter["name"] = character.name;
-
 								newCharacter["cover"] = character.thumbnail.path + "." + character.thumbnail.extension;
-
 								newCharacter["comics"] = character.comics;
-
-								newCharacter["isFavorite"] = false;
-
 								newCharacter["showModal"] = false;
 
 								setStore({
