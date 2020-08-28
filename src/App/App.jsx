@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import AppContextProvider from "../store/appContext";
 import NavbarMarvel from "../components/NavbarMarvel/NavbarMarvel";
 import Home from "../views/Home/Home";
@@ -8,7 +8,7 @@ import SearchByURL from "../views/SearchByUrl/SearchByUrl";
 
 const App = (props) => {
 	return (
-		<BrowserRouter>
+		<HashRouter>
 			<AppContextProvider>
 				<NavbarMarvel />
 				<Switch>
@@ -18,7 +18,7 @@ const App = (props) => {
 					<Route render={() => <h1>Not found!</h1>} />
 				</Switch>
 			</AppContextProvider>
-		</BrowserRouter>
+		</HashRouter>
 	);
 };
 
