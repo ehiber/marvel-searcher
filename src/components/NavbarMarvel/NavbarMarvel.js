@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, Redirect } from "react-router-dom";
 import { AppContext } from "../../store/appContext";
 import marvel from "../../assets/img/marvel.png";
 import { Navbar, InputHeroe, Icon, IconNavbar } from "./Styled";
 
 export const NavbarMarvel = () => {
 	const { store, actions } = useContext(AppContext);
+
+	const location = useLocation();
+	const currentPath = location.pathname;
 
 	const handleChangeInput = (e) => {
 		if (e.target.value === "") {
@@ -15,7 +18,7 @@ export const NavbarMarvel = () => {
 	};
 
 	const handleChangeFavorite = (e) => {
-		actions.setFavorite(store.favorite);
+		window.scrollTo(0, 0);
 	};
 
 	return (
@@ -33,11 +36,9 @@ export const NavbarMarvel = () => {
 				value={store.inputHeroe}
 			/>
 
-			{store.favorite ? (
-				<Icon className="fas fa-star" onClick={handleChangeFavorite}></Icon>
-			) : (
-				<Icon className="far fa-star" onClick={handleChangeFavorite}></Icon>
-			)}
+			<Link onClick={handleChangeFavorite} to={currentPath === "/favorites" ? "/" : "/favorites"}>
+				<Icon className={currentPath === "/favorites" ? "fas fa-star" : "far fa-star"} />
+			</Link>
 		</Navbar>
 	);
 };

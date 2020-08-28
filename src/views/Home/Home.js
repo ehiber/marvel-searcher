@@ -37,7 +37,7 @@ export const Home = (props) => {
 					{store.allCharacters ? (
 						store.inputHeroe == "" ? (
 							<CardCharacters
-								key={character.id}
+								key={store.characters[store.randomCharacterToRender].id}
 								character={store.characters[store.randomCharacterToRender]}
 							/>
 						) : (
