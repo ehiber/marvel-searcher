@@ -13,6 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			inputHeroe: "",
 			randomCharacterToRender: 0,
+			comicsToRender: [],
+			comicToRender: { index: 0, redirect: false },
 			favorites: {
 				characters: [],
 				comics: [],
@@ -71,6 +73,58 @@ const getState = ({ getStore, getActions, setStore }) => {
 					allCharacters: true,
 				});
 			},
+			setComicToRender: (id, redirect) => {
+				setStore({
+					comicToRender: { index: id, redirect: redirect },
+				});
+			},
+			setShowModal: (id, showModal, type) => {
+				let store = getStore();
+
+				let charactersToMap = "";
+				console.log("entre aqui");
+				console.log(type);
+				if (type === "searchByURL") {
+					charactersToMap = store.searchByURL.results;
+					console.log("entre aqui searchbyurl");
+					console.log(charactersToMap);
+				} else if (type === "favorites") {
+					charactersToMap = store.favorites.characters;
+				} else {
+					charactersToMap = store.characters;
+				}
+
+				let newList = charactersToMap.map((character) => {
+					if (character.id === id) {
+						console.log("mapeando");
+						console.log((character.showModal = showModal));
+						character.showModal = showModal;
+					}
+
+					return character;
+				});
+
+				if (type === "searchByURL") {
+					console.log("en el setstore");
+					setStore({
+						searchByURL: {
+							done: store.searchByURL.done,
+							results: newList,
+						},
+					});
+				} else if (type === "favorites") {
+					setStore({
+						favorites: {
+							characters: newList,
+							comics: store.favorites.comics,
+						},
+					});
+				} else {
+					setStore({
+						characters: newList,
+					});
+				}
+			},
 			fetchGetCharacters: async () => {
 				const store = getStore();
 				let resourceType = "characters";
@@ -102,7 +156,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 								newCharacter["id"] = character.id;
 								newCharacter["name"] = character.name;
 								newCharacter["cover"] = character.thumbnail.path + "." + character.thumbnail.extension;
-								newCharacter["comics"] = character.comics;
+								newCharacter["comics"] = character.comics.collectionURI.replace("http://", "https://");
 								newCharacter["showModal"] = false;
 
 								setStore({ characters: [...store.characters, newCharacter] });
@@ -155,7 +209,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 								newCharacter["id"] = character.id;
 								newCharacter["name"] = character.name;
 								newCharacter["cover"] = character.thumbnail.path + "." + character.thumbnail.extension;
-								newCharacter["comics"] = character.comics;
+								newCharacter["comics"] = character.comics.collectionURI.replace("http://", "https://");
 								newCharacter["showModal"] = false;
 
 								setStore({
@@ -176,6 +230,49 @@ const getState = ({ getStore, getActions, setStore }) => {
 							results: store.searchByURL.results,
 						},
 					});
+				} catch (error) {
+					console.log("something failed");
+					console.log(error);
+				}
+			},
+			fetchGetComics: async (url) => {
+				const store = getStore();
+
+				try {
+					let response = await fetch(`${url}?ts=${timeStamp}&apikey=${APIpublicKey}&hash=${hash}`, {
+						method: "GET",
+						headers: {
+							"Content-Type": "application/JSON",
+						},
+					});
+
+					if (response.ok) {
+						let responseBody = await response.json();
+
+						let responseBodyDATA = responseBody["data"];
+
+						let comicsToRender = responseBodyDATA.results.map((comic) => {
+							let newComic = {};
+
+							newComic["id"] = comic.id;
+
+							newComic["title"] = comic.title;
+
+							newComic["cover"] = comic.thumbnail.path + "." + comic.thumbnail.extension;
+
+							newComic["date"] = comic.dates[0].date;
+
+							newComic["description"] = comic.description;
+
+							newComic["creators"] = comic.creators;
+
+							return newComic;
+						});
+
+						setStore({ comicsToRender: comicsToRender });
+					} else if (response.stats == 400) {
+						console.log("hubo un error");
+					}
 				} catch (error) {
 					console.log("something failed");
 					console.log(error);
