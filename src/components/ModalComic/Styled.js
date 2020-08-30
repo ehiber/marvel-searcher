@@ -37,8 +37,14 @@ export const ContenidoModal = styled.div`
 	margin: auto;
 	width: 60%;
 	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.4);
-	animation-name: modal;
-	animation-duration: 1s;
+
+	h2 {
+		margin-top: 40px;
+		padding: 30px;
+		color: black;
+		font-size: 3vh;
+		font-weight: bold;
+	}
 
 	@media screen and (max-width: 900px) {
 		width: 75%;
@@ -104,10 +110,6 @@ export const Text = styled.div`
 `;
 
 export const Icon = styled.i`
-	font-size: 1.3em;
+	font-size: 1em;
 	color: black;
-`;
-
-export const HeadText = styled.div`
-	display: flex;
 `;

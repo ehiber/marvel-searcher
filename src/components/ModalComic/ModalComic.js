@@ -9,7 +9,6 @@ import { useFavorite } from "../../utils/useFavorite";
 const ModalComics = ({ nameCharacter, handleOuterClick = () => {} }) => {
 	const { store, actions } = useContext(AppContext);
 	const oneComic = (comic) => comic;
-	const { favorite, handleChangeFavorite } = useFavorite("comics", oneComic);
 
 	const handleRenderComic = (e, index) => {
 		actions.setComicToRender(index, true);
@@ -31,36 +30,40 @@ const ModalComics = ({ nameCharacter, handleOuterClick = () => {} }) => {
 						</ModalHeader>
 						<br />
 						<div>
-							{store.comicsToRender.map((comic, index) => {
-								oneComic(comic);
-								return (
-									<Fragment key={comic.id}>
-										<OneComic
-											onClick={(e) => {
-												handleRenderComic(e, index);
-											}}>
-											<ImgComic src={comic.cover} />
+							{store.comicsToRender.length > 0 ? (
+								store.comicsToRender.map((comic, index) => {
+									const { favorite, handleChangeFavorite } = useFavorite("comics", comic);
+									return (
+										<Fragment key={comic.id}>
+											<OneComic
+												onClick={(e) => {
+													handleRenderComic(e, index);
+												}}>
+												<ImgComic src={comic.cover} />
 
-											<Text>
-												<HeadText>
-													<h3>{comic.title}</h3>
-													<span onClick={handleChangeFavorite}>
-														{favorite ? (
-															<Icon className="fas fa-star" />
-														) : (
-															<Icon className="far fa-star" />
-														)}
-													</span>
-												</HeadText>
+												<Text>
+													<h3>
+														{comic.title}
+														<span onClick={handleChangeFavorite}>
+															{favorite ? (
+																<Icon className="fas fa-star" />
+															) : (
+																<Icon className="far fa-star" />
+															)}
+														</span>
+													</h3>
 
-												<p>{truncateString(comic.description)}</p>
-											</Text>
+													<p>{truncateString(comic.description)}</p>
+												</Text>
 
-											{store.comicToRender.redirect && <Redirect to="/comic" />}
-										</OneComic>
-									</Fragment>
-								);
-							})}
+												{store.comicToRender.redirect && <Redirect to="/comic" />}
+											</OneComic>
+										</Fragment>
+									);
+								})
+							) : (
+								<h2>No comics available at the moment</h2>
+							)}
 						</div>
 					</ContenidoModal>
 				</Flex>
