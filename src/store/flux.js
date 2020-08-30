@@ -237,14 +237,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			fetchGetComics: async (url) => {
 				const store = getStore();
-
+				const orderBy = "onsaleDate";
 				try {
-					let response = await fetch(`${url}?ts=${timeStamp}&apikey=${APIpublicKey}&hash=${hash}`, {
-						method: "GET",
-						headers: {
-							"Content-Type": "application/JSON",
-						},
-					});
+					let response = await fetch(
+						`${url}?ts=${timeStamp}&orderBy=${orderBy}&apikey=${APIpublicKey}&hash=${hash}`,
+						{
+							method: "GET",
+							headers: {
+								"Content-Type": "application/JSON",
+							},
+						}
+					);
 
 					if (response.ok) {
 						let responseBody = await response.json();
