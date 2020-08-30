@@ -5,11 +5,9 @@ export const ContentComic = styled.div`
 	flex-direction: row;
 	flex-wrap: wrap;
 	width: 100%;
-	padding: 20px;
 
 	@media screen and (max-width: 700px) {
 		flex-direction: column;
-		padding: 0px;
 	}
 `;
 
@@ -24,13 +22,11 @@ export const Container = styled.div`
 	font-family: "Roboto", sans-serif;
 	margin: 0.1em;
 	padding: 10px;
+
 	display: flex;
 	flex-direction: column;
 	flex-basis: 100%;
 	flex: 1;
-	@media screen and (max-width: 700px) {
-		padding: 0px;
-	}
 `;
 
 export const FullDescription = styled.div`
@@ -49,7 +45,32 @@ export const FullDescription = styled.div`
 	p {
 		margin-top: 30px;
 		font-size: 3vh;
-		padding-right: 40px;
-		text-align: justify;
 	}
+`;
+
+export const H1 = styled.h1`
+
+    text-aling:center;
+    -webkit-animation-duration: 1.3s;
+    animation-duration: 1.3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    animation-name: flash;
+    animation-iteration-count: infinite;
+
+    @-webkit-keyframes flash {
+        0%, 50%, 100% {
+            opacity: 1;
+        }   
+        25%, 75% {
+            opacity: 0;
+        }
+    }
+    @keyframes flash {
+        0%, 50%, 100% {
+            opacity: 1; 
+        }
+        25%, 75% {
+            opacity: 0;
+        }
 `;

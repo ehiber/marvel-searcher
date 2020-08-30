@@ -56,7 +56,7 @@ const ModalComics = ({ nameCharacter, handleOuterClick = () => {} }) => {
 													<p>{truncateString(comic.description)}</p>
 												</Text>
 
-												{store.comicToRender.redirect && <Redirect to="/comic" />}
+												{store.comicToRender.redirect && <Redirect to="/one-comic" />}
 											</OneComic>
 										</Fragment>
 									);

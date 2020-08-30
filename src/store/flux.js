@@ -269,6 +269,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 							newComic["creators"] = comic.creators;
 
+							newComic["url"] = comic.resourceURI.replace("http://", "https://");
+
 							return newComic;
 						});
 
