@@ -46,7 +46,7 @@ const Comic = (props) => {
 					</Fragment>
 				) : (
 					<H1>
-						Don't despair your comic is coming... If it's taking too long, make sure the url is correct
+						{"Don't despair your comic is coming... If it's taking too long, make sure the url is correct"}
 					</H1>
 				)}
 			</ContentComic>

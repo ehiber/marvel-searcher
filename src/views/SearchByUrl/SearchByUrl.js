@@ -29,6 +29,8 @@ export const SearchByURL = (props) => {
 		}
 	}, []);
 
+	const filterComicsByURL = match.params.comics ? match.params.comics.split("&") : [];
+
 	return (
 		<Fragment>
 			<Container>
@@ -36,7 +38,14 @@ export const SearchByURL = (props) => {
 					{store.searchByURL.done ? (
 						store.searchByURL.results.length !== 0 ? (
 							charactersToRenderBySearch(store.searchByURL.results).map((character) => {
-								return <CardCharacters key={character.id} character={character} type="searchByURL" />;
+								return (
+									<CardCharacters
+										key={character.id}
+										character={character}
+										type="searchByURL"
+										filterComicsByURL={filterComicsByURL}
+									/>
+								);
 							})
 						) : (
 							<h1>Thanos disappeared the results of this search, try other parameters ;)</h1>
@@ -55,4 +64,5 @@ export default SearchByURL;
 CardCharacters.propTypes = {
 	character: PropTypes.object,
 	type: PropTypes.string,
+	filterComicsByURL: PropTypes.array,
 };

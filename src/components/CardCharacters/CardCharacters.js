@@ -5,7 +5,7 @@ import { useFavorite } from "../../utils/useFavorite";
 import ModalComics from "../ModalComic/ModalComic";
 import { AppContext } from "../../store/appContext.js";
 
-const CardCharacters = ({ character, type }) => {
+const CardCharacters = ({ character, type, filterComicsByURL }) => {
 	const { store, actions } = useContext(AppContext);
 	const { favorite, handleChangeFavorite } = useFavorite("characters", character);
 
@@ -38,6 +38,7 @@ const CardCharacters = ({ character, type }) => {
 							handleOuterClick={(e) => {
 								actions.setShowModal(character.id, false, type);
 							}}
+							filterComicsByURL={filterComicsByURL}
 						/>
 					)}
 				</Container>
@@ -51,4 +52,5 @@ export default CardCharacters;
 CardCharacters.propTypes = {
 	character: PropTypes.object,
 	type: PropTypes.string,
+	filterComicsByURL: PropTypes.array,
 };
