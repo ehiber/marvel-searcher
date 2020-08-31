@@ -30,6 +30,8 @@ export const Home = (props) => {
 		actions.setRandomCharacterToRender();
 	}, []);
 
+	const filterComicsByURL = [];
+
 	return (
 		<Fragment>
 			<Container>
@@ -39,10 +41,17 @@ export const Home = (props) => {
 							<CardCharacters
 								key={store.characters[store.randomCharacterToRender].id}
 								character={store.characters[store.randomCharacterToRender]}
+								filterComicsByURL={filterComicsByURL}
 							/>
 						) : (
 							charactersToRenderBySearch(store.characters).map((character) => {
-								return <CardCharacters key={character.id} character={character} />;
+								return (
+									<CardCharacters
+										key={character.id}
+										character={character}
+										filterComicsByURL={filterComicsByURL}
+									/>
+								);
 							})
 						)
 					) : (
@@ -58,4 +67,5 @@ export default Home;
 
 CardCharacters.propTypes = {
 	character: PropTypes.object,
+	filterComicsByURL: PropTypes.array,
 };

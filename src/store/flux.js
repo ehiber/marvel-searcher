@@ -22,6 +22,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			allCharacters: false,
 		},
 		actions: {
+			setFavorites: (favorites) => {
+				setStore({
+					favorites: favorites,
+				});
+			},
 			setFavoriteCharacter: (characters, action) => {
 				let store = getStore();
 				if (action === "replace") {
@@ -82,12 +87,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let store = getStore();
 
 				let charactersToMap = "";
-				console.log("entre aqui");
-				console.log(type);
+
 				if (type === "searchByURL") {
 					charactersToMap = store.searchByURL.results;
-					console.log("entre aqui searchbyurl");
-					console.log(charactersToMap);
 				} else if (type === "favorites") {
 					charactersToMap = store.favorites.characters;
 				} else {
@@ -96,8 +98,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				let newList = charactersToMap.map((character) => {
 					if (character.id === id) {
-						console.log("mapeando");
-						console.log((character.showModal = showModal));
 						character.showModal = showModal;
 					}
 
@@ -105,7 +105,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 
 				if (type === "searchByURL") {
-					console.log("en el setstore");
 					setStore({
 						searchByURL: {
 							done: store.searchByURL.done,

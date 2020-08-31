@@ -32,6 +32,7 @@ export const useFavorite = (property, object) => {
 			setFavorite(!favorite);
 			actions.setFavoriteComic(object);
 		}
+		localStorage.setItem("favorites", JSON.stringify(store.favorites));
 	};
 
 	return {

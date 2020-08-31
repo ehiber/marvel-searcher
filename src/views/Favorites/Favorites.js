@@ -4,7 +4,7 @@ import { AppContext } from "../../store/appContext.js";
 import CardCharacters from "../../components/CardCharacters/CardCharacters";
 import { AllCards, Container } from "./Styled.js";
 
-export const Home = (props) => {
+export const Favorites = (props) => {
 	const { store, actions } = useContext(AppContext);
 
 	const charactersToRenderBySearch = (charactersToRender) => {
@@ -25,7 +25,7 @@ export const Home = (props) => {
 			<Container>
 				<AllCards>
 					{charactersToRenderBySearch(store.favorites.characters).map((character) => {
-						return <CardCharacters key={character.id} character={character} />;
+						return <CardCharacters key={character.id} character={character} filterComicsByURL={[]} />;
 					})}
 				</AllCards>
 			</Container>
@@ -33,8 +33,9 @@ export const Home = (props) => {
 	);
 };
 
-export default Home;
+export default Favorites;
 
 CardCharacters.propTypes = {
 	character: PropTypes.object,
+	filterComicsByURL: PropTypes.array,
 };

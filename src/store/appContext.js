@@ -19,6 +19,10 @@ const AppContextProvider = (props) => {
 
 	useEffect(() => {
 		state.actions.fetchGetCharacters();
+		let favoritesStorage = JSON.parse(localStorage.getItem("favorites"));
+		if (favoritesStorage) {
+			state.actions.setFavorites(favoritesStorage);
+		}
 	}, []);
 
 	return <AppContext.Provider value={state}>{props.children}</AppContext.Provider>;
