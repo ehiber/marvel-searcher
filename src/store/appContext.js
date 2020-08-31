@@ -12,8 +12,8 @@ const AppContextProvider = (props) => {
 			setStore: (updatedStore) =>
 				setState({
 					store: Object.assign(state.store, updatedStore),
-					actions: { ...state.actions },
-				}),
+					actions: { ...state.actions }
+				})
 		})
 	);
 
@@ -31,5 +31,5 @@ const AppContextProvider = (props) => {
 export default AppContextProvider;
 
 AppContextProvider.propTypes = {
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node.isRequired
 };

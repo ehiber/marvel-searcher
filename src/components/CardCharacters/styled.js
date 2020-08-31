@@ -50,6 +50,6 @@ export const Img = styled.img`
 
 Img.defaultProps = {
 	theme: {
-		text: "black",
-	},
+		text: "black"
+	}
 };

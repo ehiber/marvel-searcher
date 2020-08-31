@@ -91,5 +91,5 @@ export default ModalComics;
 ModalComics.propTypes = {
 	nameCharacter: PropTypes.string,
 	handleOuterClick: PropTypes.func,
-	filterComicsByURL: PropTypes.array,
+	filterComicsByURL: PropTypes.array
 };

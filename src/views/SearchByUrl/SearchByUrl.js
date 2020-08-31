@@ -64,5 +64,5 @@ export default SearchByURL;
 CardCharacters.propTypes = {
 	character: PropTypes.object,
 	type: PropTypes.string,
-	filterComicsByURL: PropTypes.array,
+	filterComicsByURL: PropTypes.array
 };

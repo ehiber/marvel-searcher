@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			characters: [],
 			searchByURL: {
 				done: false,
-				results: [],
+				results: []
 			},
 			inputHeroe: "",
 			randomCharacterToRender: 0,
@@ -17,33 +17,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 			comicToRender: { index: 0, redirect: false },
 			favorites: {
 				characters: [],
-				comics: [],
+				comics: []
 			},
 			allCharacters: false,
 			theme: {
 				text: "black",
 				bg: "white",
 				icon: "rgb(138,138,138)",
-				placeholder: "rgb(224,224,224)",
+				placeholder: "rgb(224,224,224)"
 			},
 			otherTheme: {
 				text: "white",
 				bg: "black",
 				icon: "white",
-				placeholder: "white",
-			},
+				placeholder: "white"
+			}
 		},
 		actions: {
 			setFavorites: (favorites) => {
 				setStore({
-					favorites: favorites,
+					favorites: favorites
 				});
 			},
 			setTheme: () => {
 				let store = getStore();
 				setStore({
 					theme: store.otherTheme,
-					otherTheme: store.theme,
+					otherTheme: store.theme
 				});
 			},
 			setFavoriteCharacter: (characters, action) => {
@@ -52,15 +52,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 						favorites: {
 							characters: characters,
-							comics: store.favorites.comics,
-						},
+							comics: store.favorites.comics
+						}
 					});
 				} else {
 					setStore({
 						favorites: {
 							characters: [...store.favorites.characters, characters],
-							comics: store.favorites.comics,
-						},
+							comics: store.favorites.comics
+						}
 					});
 				}
 			},
@@ -70,36 +70,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 						favorites: {
 							characters: store.favorites.characters,
-							comics: comics,
-						},
+							comics: comics
+						}
 					});
 				} else {
 					setStore({
 						favorites: {
 							characters: store.favorites.characters,
-							comics: [...store.favorites.comics, comics],
-						},
+							comics: [...store.favorites.comics, comics]
+						}
 					});
 				}
 			},
 			setRandomCharacterToRender: () => {
 				setStore({
-					randomCharacterToRender: Math.floor(Math.random() * 1493),
+					randomCharacterToRender: Math.floor(Math.random() * 1493)
 				});
 			},
 			setInputHeroe: (newInput) => {
 				setStore({
-					inputHeroe: newInput,
+					inputHeroe: newInput
 				});
 			},
 			setAllCharacters: () => {
 				setStore({
-					allCharacters: true,
+					allCharacters: true
 				});
 			},
 			setComicToRender: (id, redirect) => {
 				setStore({
-					comicToRender: { index: id, redirect: redirect },
+					comicToRender: { index: id, redirect: redirect }
 				});
 			},
 			setShowModal: (id, showModal, type) => {
@@ -127,19 +127,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 						searchByURL: {
 							done: store.searchByURL.done,
-							results: newList,
-						},
+							results: newList
+						}
 					});
 				} else if (type === "favorites") {
 					setStore({
 						favorites: {
 							characters: newList,
-							comics: store.favorites.comics,
-						},
+							comics: store.favorites.comics
+						}
 					});
 				} else {
 					setStore({
-						characters: newList,
+						characters: newList
 					});
 				}
 			},
@@ -158,8 +158,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 							{
 								method: "GET",
 								headers: {
-									"Content-Type": "application/JSON",
-								},
+									"Content-Type": "application/JSON"
+								}
 							}
 						);
 
@@ -181,12 +181,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 							});
 							offset += limit;
 						} else if (response.stats == 400) {
-							console.log("hubo un error");
+							// console.log("hubo un error");
 						}
 					}
 				} catch (error) {
-					console.log("something failed");
-					console.log(error);
+					// console.log("something failed");
+					// console.log(error);
 				}
 			},
 			fetchGetCharactersBySearch: async (name) => {
@@ -197,8 +197,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({
 						searchByURL: {
 							done: true,
-							results: store.searchByURL.results,
-						},
+							results: store.searchByURL.results
+						}
 					});
 				}
 
@@ -209,13 +209,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 							{
 								method: "GET",
 								headers: {
-									"Content-Type": "application/JSON",
-								},
+									"Content-Type": "application/JSON"
+								}
 							}
 						);
-						console.log(
-							`${APIurlMarvel}${resourceType}?ts=${timeStamp}&name=${name}&apikey=${APIpublicKey}&hash=${hash}`
-						);
+
 						if (response.ok) {
 							let responseBody = await response.json();
 
@@ -233,24 +231,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 								setStore({
 									searchByURL: {
 										done: false,
-										results: [...store.searchByURL.results, newCharacter],
-									},
+										results: [...store.searchByURL.results, newCharacter]
+									}
 								});
 							});
 						} else if (response.stats == 400) {
-							console.log("hubo un error");
+							// console.log("hubo un error");
 						}
 					}
 
 					setStore({
 						searchByURL: {
 							done: true,
-							results: store.searchByURL.results,
-						},
+							results: store.searchByURL.results
+						}
 					});
 				} catch (error) {
-					console.log("something failed");
-					console.log(error);
+					// console.log("something failed");
+					// console.log(error);
 				}
 			},
 			fetchGetComics: async (url) => {
@@ -262,8 +260,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						{
 							method: "GET",
 							headers: {
-								"Content-Type": "application/JSON",
-							},
+								"Content-Type": "application/JSON"
+							}
 						}
 					);
 
@@ -294,14 +292,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 						setStore({ comicsToRender: comicsToRender });
 					} else if (response.stats == 400) {
-						console.log("hubo un error");
+						// console.log("hubo un error");
 					}
 				} catch (error) {
-					console.log("something failed");
-					console.log(error);
+					// console.log("something failed");
+					// console.log(error);
 				}
-			},
-		},
+			}
+		}
 	};
 };
 

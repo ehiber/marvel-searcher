@@ -46,6 +46,6 @@ export const H1 = styled.h1`
 
 H1.defaultProps = {
 	theme: {
-		text: "black",
-	},
+		text: "black"
+	}
 };

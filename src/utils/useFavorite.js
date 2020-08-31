@@ -37,6 +37,6 @@ export const useFavorite = (property, object) => {
 
 	return {
 		favorite,
-		handleChangeFavorite,
+		handleChangeFavorite
 	};
 };

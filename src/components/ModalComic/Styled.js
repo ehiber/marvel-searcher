@@ -57,8 +57,8 @@ export const ContentModal = styled.div`
 ContentModal.defaultProps = {
 	theme: {
 		bg: "white",
-		text: "black",
-	},
+		text: "black"
+	}
 };
 
 export const Close = styled.div`

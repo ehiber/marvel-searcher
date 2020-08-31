@@ -12,5 +12,5 @@ export const Theme = ({ children }) => {
 export default Theme;
 
 Theme.propTypes = {
-	children: PropTypes.node,
+	children: PropTypes.node
 };

@@ -13,7 +13,7 @@ const CardCharacters = ({ character, type, filterComicsByURL }) => {
 		await actions.fetchGetComics(url);
 		actions.setShowModal(id, true, type);
 	};
-	console.log(type);
+
 	return (
 		<Fragment>
 			<Card>
@@ -52,5 +52,5 @@ export default CardCharacters;
 CardCharacters.propTypes = {
 	character: PropTypes.object,
 	type: PropTypes.string,
-	filterComicsByURL: PropTypes.array,
+	filterComicsByURL: PropTypes.array
 };

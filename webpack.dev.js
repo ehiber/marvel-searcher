@@ -26,7 +26,7 @@ module.exports = merge(common, {
             bracketSpacing: true,
             extensions: [ ".js", ".jsx" ],
             jsxBracketSameLine: true,
-            semi: true,                 // Print semicolons at the ends of statements.
+            trailingComma: "none",                 // Print semicolons at the ends of statements.
             encoding: 'utf-8'           // Which encoding scheme to use on files
         }),
         new webpack.HotModuleReplacementPlugin(),

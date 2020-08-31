@@ -67,5 +67,5 @@ export default Home;
 
 CardCharacters.propTypes = {
 	character: PropTypes.object,
-	filterComicsByURL: PropTypes.array,
+	filterComicsByURL: PropTypes.array
 };

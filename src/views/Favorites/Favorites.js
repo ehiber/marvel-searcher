@@ -45,5 +45,5 @@ export default Favorites;
 CardCharacters.propTypes = {
 	character: PropTypes.object,
 	filterComicsByURL: PropTypes.array,
-	type: PropTypes.string,
+	type: PropTypes.string
 };
