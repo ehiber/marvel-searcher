@@ -5,7 +5,7 @@ export const ContentComic = styled.div`
 	flex-direction: row;
 	flex-wrap: wrap;
 	width: 100%;
-
+	background-color: ${(props) => props.theme.bg};
 	@media screen and (max-width: 700px) {
 		flex-direction: column;
 	}
@@ -46,12 +46,6 @@ export const FullDescription = styled.div`
 	}
 `;
 
-FullDescription.defaultProps = {
-	theme: {
-		text: "black",
-	},
-};
-
 export const H1 = styled.h1`
 
     text-aling:center;
@@ -79,9 +73,3 @@ export const H1 = styled.h1`
             opacity: 0;
         }
 `;
-
-H1.defaultProps = {
-	theme: {
-		text: "black",
-	},
-};

@@ -11,6 +11,8 @@ export const AllCards = styled.div`
 
 export const Container = styled.div`
 	padding: 50px;
+	background-color: ${(props) => props.theme.bg};
+	height: 100%;
 `;
 
 export const H1 = styled.h1`

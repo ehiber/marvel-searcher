@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { AppContext } from "../../store/appContext";
 import marvel from "../../assets/img/marvel.png";
@@ -6,7 +6,7 @@ import { Navbar, InputHeroe, Icon, IconNavbar, IconTheme, StyledLink } from "./S
 
 export const NavbarMarvel = () => {
 	const { store, actions } = useContext(AppContext);
-
+	const [darkMode, setDarkMode] = useState(false);
 	const location = useLocation();
 	const currentPath = location.pathname;
 
@@ -22,6 +22,7 @@ export const NavbarMarvel = () => {
 	};
 
 	const handleTheme = (e) => {
+		setDarkMode(!darkMode);
 		actions.setTheme();
 	};
 
@@ -44,7 +45,7 @@ export const NavbarMarvel = () => {
 				<StyledLink onClick={handleChangeFavorite} to={currentPath === "/favorites" ? "/" : "/favorites"}>
 					<i className={currentPath === "/favorites" ? "fas fa-star" : "far fa-star"} />
 				</StyledLink>
-				<IconTheme className="fas fa-circle" onClick={handleTheme} />
+				<IconTheme className={darkMode ? "fas fa-sun" : "fas fa-moon"} onClick={handleTheme} />
 			</Icon>
 		</Navbar>
 	);

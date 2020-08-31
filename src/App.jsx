@@ -7,12 +7,14 @@ import Favorites from "./views/Favorites/Favorites";
 import SearchByURL from "./views/SearchByUrl/SearchByUrl";
 import Comic from "./views/Comic/Comic";
 import Theme from "./styles/Theme";
+import { GlobalStyle } from "./styles/GlobalStyle";
 
 const App = (props) => {
 	return (
 		<HashRouter>
 			<AppContextProvider>
 				<Theme>
+					<GlobalStyle />
 					<NavbarMarvel />
 					<Switch>
 						<Route exact path="/" component={Home} />

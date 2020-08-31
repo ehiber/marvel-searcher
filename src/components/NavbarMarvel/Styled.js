@@ -6,7 +6,7 @@ export const Navbar = styled.div`
 	flex-direction: row;
 	width: 100%;
 	height: 50px;
-	margin-top: 13px;
+	padding-top: 13px;
 	background-color: ${(props) => props.theme.bg};
 	border-bottom: 2px rgb(235, 235, 235) solid;
 `;
@@ -23,6 +23,7 @@ export const InputHeroe = styled.input`
 	border-color: ${(props) => props.theme.placeholder};
 	font-size: medium;
 	background: ${(props) => props.theme.bg};
+	color: ${(props) => props.theme.text};
 
 	::placeholder {
 		font-size: 2hv;
