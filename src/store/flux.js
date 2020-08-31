@@ -1,8 +1,10 @@
+import { getConfig } from "../../config";
+
 const getState = ({ getStore, getActions, setStore }) => {
-	const APIurlMarvel = "https://gateway.marvel.com/v1/public/";
-	const APIpublicKey = "ae5fdb0f7fe8f2a7848c3a15e561cb85";
-	const timeStamp = "1";
-	const hash = "0750a5e7e851d8e2830a9d35f488eeda";
+	const APIurlMarvel = getConfig().BASE_URL_MARVEL_API;
+	const APIpublicKey = getConfig().PUBLIC_KEY_API;
+	const timeStamp = getConfig().TIME_STAMP_URL;
+	const hash = getConfig().HASH_API_PATH;
 
 	return {
 		store: {
@@ -145,15 +147,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			fetchGetCharacters: async () => {
 				const store = getStore();
-				let resourceType = "characters";
-				let limit = 100;
+				let resourceType = getConfig().RESOURCE_TYPE;
+				let limit = getConfig().LIMIT_CHARACTERS;
 				let offset = 0;
-				let getAllCharacters = 15; //Rounds to get all characters
-
+				let getAllCharacters = getConfig().GET_ALL_CHARACTERS; //Rounds to get all characters
+				let response = [];
 				try {
 					for (let i = 0; i < getAllCharacters; i++) {
-						let lengthCharacters = store.characters.length;
-						let response = await fetch(
+						response[i] = await fetch(
 							`${APIurlMarvel}${resourceType}?ts=${timeStamp}&limit=${limit}&offset=${offset}&apikey=${APIpublicKey}&hash=${hash}`,
 							{
 								method: "GET",
@@ -162,9 +163,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 								}
 							}
 						);
-
-						if (response.ok) {
-							let responseBody = await response.json();
+						offset += limit;
+					}
+					for (let i = 0; i < getAllCharacters; i++) {
+						if (response[i].ok) {
+							let responseBody = await response[i].json();
 
 							let responseBodyDATA = responseBody["data"];
 
@@ -179,7 +182,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 								setStore({ characters: [...store.characters, newCharacter] });
 							});
-							offset += limit;
 						} else if (response.stats == 400) {
 							// console.log("hubo un error");
 						}
@@ -191,7 +193,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			fetchGetCharactersBySearch: async (name) => {
 				const store = getStore();
-				let resourceType = "characters";
+				let resourceType = getConfig().RESOURCE_TYPE;
 
 				if (name === undefined) {
 					setStore({
@@ -253,7 +255,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			fetchGetComics: async (url) => {
 				const store = getStore();
-				const orderBy = "onsaleDate";
+				const orderBy = getConfig().ORDER_BY_COMICS;
 				try {
 					let response = await fetch(
 						`${url}?ts=${timeStamp}&orderBy=${orderBy}&apikey=${APIpublicKey}&hash=${hash}`,

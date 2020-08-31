@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
-	font-size: 1.5vh;
 	font-family: "Roboto", sans-serif;
 	color: white;
 	margin: 0.1em;
@@ -19,6 +18,7 @@ export const Icon = styled.i`
 `;
 
 export const Name = styled.h1`
+	font-size: 1.5em;
 	text-shadow: -1px 2px 1px black;
 	position: absolute;
 	top: 300px;
@@ -47,9 +47,3 @@ export const Img = styled.img`
         height : 330px;
       }
 `;
-
-Img.defaultProps = {
-	theme: {
-		text: "black"
-	}
-};

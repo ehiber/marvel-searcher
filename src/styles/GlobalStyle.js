@@ -1,7 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+    body{
+        background: ${(props) => props.theme.bg}; 
+    }
+
     text-align: center;
-    background: ${(props) => props.theme.bg}; 
     display: inline block;
 `;
