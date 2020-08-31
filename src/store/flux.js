@@ -154,7 +154,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let response = [];
 				try {
 					for (let i = 0; i < getAllCharacters; i++) {
-						console.log("entreaquii");
 						response = await fetch(
 							`${APIurlMarvel}${resourceType}?ts=${timeStamp}&limit=${limit}&offset=${offset}&apikey=${APIpublicKey}&hash=${hash}`,
 							{
@@ -169,7 +168,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							let responseBody = await response.json();
 
 							let responseBodyDATA = responseBody["data"];
-							console.log(responseBodyDATA);
+
 							responseBodyDATA.results.map((character, index) => {
 								let newCharacter = {};
 
