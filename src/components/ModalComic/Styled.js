@@ -79,7 +79,7 @@ export const ModalHeader = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background: white;
+	background: ${(props) => props.theme.bg};
 	margin: -10px 0;
 
 	h2 {
@@ -95,7 +95,7 @@ export const OneComic = styled.div`
 
 	:hover {
 		cursor: pointer;
-		box-shadow: 5px 20px 60px 20px black;
+		box-shadow: 5px 20px 60px 20px ${(props) => props.theme.text};
 	}
 `;
 

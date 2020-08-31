@@ -9,7 +9,7 @@ const Comic = (props) => {
 	const location = useLocation();
 	const urlComicMarvel = location.pathname.slice(11);
 	useEffect(() => {
-		if (store.comicsToRender.lenght > 0) {
+		if (store.comicsToRender.length > 0) {
 			actions.setComicToRender(store.comicToRender.index, false);
 		} else {
 			actions.fetchGetComics(urlComicMarvel.replace("http://", "https://"));
