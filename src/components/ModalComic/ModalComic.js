@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { AppContext } from "../../store/appContext.js";
-import { Modal, Flex, ContenidoModal, Close, ModalHeader, OneComic, ImgComic, Text, Icon, HeadText } from "./Styled";
+import { Modal, Flex, ContentModal, Close, ModalHeader, OneComic, ImgComic, Text, Icon } from "./Styled";
 import { Redirect } from "react-router-dom";
 import { truncateString } from "../../utils/truncateString";
 import { useFavorite } from "../../utils/useFavorite";
@@ -32,7 +32,7 @@ const ModalComics = ({ nameCharacter, handleOuterClick = () => {}, filterComicsB
 		<Fragment>
 			<Modal className="modal">
 				<Flex>
-					<ContenidoModal>
+					<ContentModal>
 						<ModalHeader>
 							<h2>{nameCharacter}</h2>
 							<Close
@@ -70,9 +70,7 @@ const ModalComics = ({ nameCharacter, handleOuterClick = () => {}, filterComicsB
 													<p>{truncateString(comic.description)}</p>
 												</Text>
 
-												{filterComicsByURLToRender(filterComicsByURL).redirect && (
-													<Redirect to="/one-comic" />
-												)}
+												{store.comicToRender.redirect && <Redirect to="/one-comic" />}
 											</OneComic>
 										</Fragment>
 									);
@@ -81,7 +79,7 @@ const ModalComics = ({ nameCharacter, handleOuterClick = () => {}, filterComicsB
 								<h2>No comics available at the moment</h2>
 							)}
 						</div>
-					</ContenidoModal>
+					</ContentModal>
 				</Flex>
 			</Modal>
 		</Fragment>

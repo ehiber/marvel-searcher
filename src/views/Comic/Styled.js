@@ -31,22 +31,26 @@ export const Container = styled.div`
 
 export const FullDescription = styled.div`
 	text-align: left;
-	color: black;
+	color: ${(props) => props.theme.text};
+	font-weight: bold;
 
 	h1 {
 		margin-bottom: 30px;
-		font-weight: bold;
-	}
-
-	h2 {
-		font-weight: bold;
+		font-size: 3em;
 	}
 
 	p {
 		margin-top: 30px;
-		font-size: 3vh;
+		font-size: 2em;
+		text-align: justify;
 	}
 `;
+
+FullDescription.defaultProps = {
+	theme: {
+		text: "black",
+	},
+};
 
 export const H1 = styled.h1`
 
@@ -57,7 +61,8 @@ export const H1 = styled.h1`
     animation-fill-mode: both;
     animation-name: flash;
     animation-iteration-count: infinite;
-
+	color: ${(props) => props.theme.text};
+	
     @-webkit-keyframes flash {
         0%, 50%, 100% {
             opacity: 1;
@@ -74,3 +79,9 @@ export const H1 = styled.h1`
             opacity: 0;
         }
 `;
+
+H1.defaultProps = {
+	theme: {
+		text: "black",
+	},
+};

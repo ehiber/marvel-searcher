@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Navbar = styled.div`
 	display: flex;
@@ -6,7 +7,7 @@ export const Navbar = styled.div`
 	width: 100%;
 	height: 50px;
 	margin-top: 13px;
-	background-color: white;
+	background-color: ${(props) => props.theme.bg};
 	border-bottom: 2px rgb(235, 235, 235) solid;
 `;
 
@@ -19,12 +20,13 @@ export const InputHeroe = styled.input`
 	border-top: 0ch;
 	border-bottom: 0ch;
 	border-right: 0ch;
-	border-color: rgba(224, 224, 224, 0.1);
+	border-color: ${(props) => props.theme.placeholder};
 	font-size: medium;
+	background: ${(props) => props.theme.bg};
 
 	::placeholder {
 		font-size: 2hv;
-		color: rgb(224, 224, 224);
+		color: ${(props) => props.theme.placeholder};
 	}
 
 	@media (max-width: 500px) {
@@ -45,10 +47,22 @@ export const IconNavbar = styled.img`
 	}
 `;
 
-export const Icon = styled.i`
-	color: rgb(138, 138, 138);
+export const Icon = styled.div`
 	padding: 10px 80px;
+	display: flex;
+
 	@media (max-width: 500px) {
 		padding: 10px 20px;
 	}
+`;
+
+export const StyledLink = styled(Link)`
+	i {
+		color: ${(props) => props.theme.icon};
+	}
+`;
+
+export const IconTheme = styled.i`
+	padding: 0 15px;
+	color: ${(props) => props.theme.text};
 `;

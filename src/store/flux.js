@@ -20,11 +20,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 				comics: [],
 			},
 			allCharacters: false,
+			theme: {
+				text: "black",
+				bg: "white",
+				icon: "rgb(138,138,138)",
+				placeholder: "rgb(224,224,224)",
+			},
+			otherTheme: {
+				text: "white",
+				bg: "black",
+				icon: "white",
+				placeholder: "white",
+			},
 		},
 		actions: {
 			setFavorites: (favorites) => {
 				setStore({
 					favorites: favorites,
+				});
+			},
+			setTheme: () => {
+				let store = getStore();
+				setStore({
+					theme: store.otherTheme,
+					otherTheme: store.theme,
 				});
 			},
 			setFavoriteCharacter: (characters, action) => {

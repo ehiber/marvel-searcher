@@ -31,17 +31,17 @@ export const Flex = styled.div`
 	align-items: center;
 `;
 
-export const ContenidoModal = styled.div`
+export const ContentModal = styled.div`
 	position: relative;
-	background-color: #fefefe;
+	background-color: ${(props) => props.theme.bg};
 	margin: auto;
 	width: 60%;
 	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.4);
+	color: ${(props) => props.theme.text};
 
 	h2 {
 		margin-top: 40px;
 		padding: 30px;
-		color: black;
 		font-size: 3vh;
 		font-weight: bold;
 	}
@@ -53,6 +53,14 @@ export const ContenidoModal = styled.div`
 		width: 95%;
 	}
 `;
+
+ContentModal.defaultProps = {
+	theme: {
+		bg: "white",
+		text: "black",
+	},
+};
+
 export const Close = styled.div`
 	margin: 10px 20px 0 0;
 	font-size: 30px;
@@ -72,7 +80,6 @@ export const ModalHeader = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	background: white;
-	color: black;
 	margin: -10px 0;
 
 	h2 {
@@ -85,10 +92,10 @@ export const OneComic = styled.div`
 	display: flex;
 	flex-flow: row;
 	margin: 20px;
-	color: black;
 
 	:hover {
 		cursor: pointer;
+		box-shadow: 5px 20px 60px 20px black;
 	}
 `;
 
@@ -106,10 +113,10 @@ export const Text = styled.div`
 	p {
 		text-align: justify;
 		margin: 10px 0;
+		font-weight: bold;
 	}
 `;
 
 export const Icon = styled.i`
 	font-size: 1em;
-	color: black;
 `;

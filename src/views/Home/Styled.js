@@ -22,6 +22,7 @@ export const H1 = styled.h1`
     animation-fill-mode: both;
     animation-name: flash;
     animation-iteration-count: infinite;
+    color: ${(props) => props.theme.text};
 
     @-webkit-keyframes flash {
         0%, 50%, 100% {
@@ -40,3 +41,9 @@ export const H1 = styled.h1`
         }
 
 `;
+
+H1.defaultProps = {
+	theme: {
+		text: "black",
+	},
+};

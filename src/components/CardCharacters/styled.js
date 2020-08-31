@@ -15,16 +15,14 @@ export const Icon = styled.i`
 	position: absolute;
 	top: 15px;
 	left: 215px;
-	@media (max-width: 280px) {
-		left: 180px;
-	}
+	text-shadow: 2px 5px 1px black;
 `;
 
 export const Name = styled.h1`
-	text-shadow: 2px 2px 3px black;
+	text-shadow: -1px 2px 1px black;
 	position: absolute;
-	top: 330px;
-	left: 20px;
+	top: 300px;
+	left: 15px;
 `;
 
 export const Container = styled.div`
@@ -40,7 +38,8 @@ export const Img = styled.img`
     height : 380px;
     
     :hover{
-        cursor: pointer;
+		cursor: pointer;
+		box-shadow: 1px 15px 60px ${(props) => props.theme.text};
     }
 
     @media (max-width: 280px) {
@@ -48,3 +47,9 @@ export const Img = styled.img`
         height : 330px;
       }
 `;
+
+Img.defaultProps = {
+	theme: {
+		text: "black",
+	},
+};
