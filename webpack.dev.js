@@ -5,6 +5,7 @@ const PrettierPlugin = require("prettier-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const path = require('path');
 
 module.exports = merge(common, {
     mode: 'development',
@@ -30,6 +31,9 @@ module.exports = merge(common, {
             encoding: 'utf-8'           // Which encoding scheme to use on files
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new Dotenv()
+        new Dotenv({
+            path: path.resolve(process.cwd(),".env"),
+            systemvars:true
+        })
     ]
 });

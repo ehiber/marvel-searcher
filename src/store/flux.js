@@ -150,11 +150,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let resourceType = getConfig().RESOURCE_TYPE;
 				let limit = getConfig().LIMIT_CHARACTERS;
 				let offset = 0;
-				let getAllCharacters = getConfig().GET_ALL_CHARACTERS; //Rounds to get all characters
+				let getAllCharacters = 15; //Rounds to get all characters
 				let response = [];
 				try {
 					for (let i = 0; i < getAllCharacters; i++) {
-						response[i] = await fetch(
+						console.log("entreaquii");
+						response = await fetch(
 							`${APIurlMarvel}${resourceType}?ts=${timeStamp}&limit=${limit}&offset=${offset}&apikey=${APIpublicKey}&hash=${hash}`,
 							{
 								method: "GET",
@@ -163,14 +164,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 								}
 							}
 						);
-						offset += limit;
-					}
-					for (let i = 0; i < getAllCharacters; i++) {
-						if (response[i].ok) {
-							let responseBody = await response[i].json();
+
+						if (response.ok) {
+							let responseBody = await response.json();
 
 							let responseBodyDATA = responseBody["data"];
-
+							console.log(responseBodyDATA);
 							responseBodyDATA.results.map((character, index) => {
 								let newCharacter = {};
 
@@ -185,6 +184,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						} else if (response.stats == 400) {
 							// console.log("hubo un error");
 						}
+						offset += 100;
 					}
 				} catch (error) {
 					// console.log("something failed");
