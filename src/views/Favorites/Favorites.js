@@ -25,7 +25,14 @@ export const Favorites = (props) => {
 			<Container>
 				<AllCards>
 					{charactersToRenderBySearch(store.favorites.characters).map((character) => {
-						return <CardCharacters key={character.id} character={character} filterComicsByURL={[]} />;
+						return (
+							<CardCharacters
+								key={character.id}
+								character={character}
+								type="favorites"
+								filterComicsByURL={[]}
+							/>
+						);
 					})}
 				</AllCards>
 			</Container>
@@ -38,4 +45,5 @@ export default Favorites;
 CardCharacters.propTypes = {
 	character: PropTypes.object,
 	filterComicsByURL: PropTypes.array,
+	type: PropTypes.string,
 };
