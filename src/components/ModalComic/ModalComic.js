@@ -9,13 +9,15 @@ import { useFavorite } from "../../utils/useFavorite";
 const ModalComics = ({ nameCharacter, handleOuterClick = () => {}, filterComicsByURL }) => {
 	const { store, actions } = useContext(AppContext);
 
+	// redirect to comic preview
 	const handleRenderComic = (e, index) => {
 		actions.setComicToRender(index, true);
 	};
 
+	// filters the comics according to the search parameter with sensitive case and inclusive
 	const filterComicsByURLToRender = (filterComicsByURL) => {
-		if (filterComicsByURL.length < 1) {
-			return store.comicsToRender;
+		if (filterComicsByURL.length < 1) { //if there is no search parameter we return all
+			return store.comicsToRender; 
 		} else {
 			let ComicsByURLToRender = store.comicsToRender.filter((comicStore) => {
 				for (let filter of filterComicsByURL) {

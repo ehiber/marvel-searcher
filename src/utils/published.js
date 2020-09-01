@@ -1,4 +1,4 @@
-// Dando formato a la fecha
+// Formatting the date
 
 export const published = (date) => {
 	let dateFormat = new Date(date);

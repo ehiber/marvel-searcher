@@ -31,7 +31,7 @@ const CardCharacters = ({ character, type, filterComicsByURL }) => {
 
 					<Name>{character.name}</Name>
 
-					{/* para mostrar el modal de ese personje */}
+					{/* to show the modal of that personage */}
 					{character.showModal && (
 						<ModalComics
 							nameCharacter={character.name}

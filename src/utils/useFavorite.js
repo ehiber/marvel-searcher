@@ -1,6 +1,8 @@
 import { useState, useContext } from "react";
 import { AppContext } from "../store/appContext";
 
+// Customized Hook for favorites, either a character or a comic
+
 export const useFavorite = (property, object) => {
 	const { store, actions } = useContext(AppContext);
 
@@ -12,7 +14,7 @@ export const useFavorite = (property, object) => {
 	const handleChangeFavorite = (e) => {
 		e.stopPropagation();
 		e.preventDefault();
-
+		//deciding whether it is a character or a comic and whether it should be added or replaced
 		if (favorite && property === "characters") {
 			setFavorite(!favorite);
 			let newFavoritesArray = store.favorites[property].filter((favorite) => {
@@ -32,6 +34,7 @@ export const useFavorite = (property, object) => {
 			setFavorite(!favorite);
 			actions.setFavoriteComic(object);
 		}
+		// storing in the local storage
 		localStorage.setItem("favorites", JSON.stringify(store.favorites));
 	};
 

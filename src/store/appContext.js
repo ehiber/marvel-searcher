@@ -20,7 +20,7 @@ const AppContextProvider = (props) => {
 	useEffect(() => {
 		state.actions.fetchGetCharacters();
 		let favoritesStorage = JSON.parse(localStorage.getItem("favorites"));
-		if (favoritesStorage) {
+		if (favoritesStorage) { //if there are favorites in the local Storage, we add
 			state.actions.setFavorites(favoritesStorage);
 		}
 	}, []);

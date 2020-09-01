@@ -4,32 +4,21 @@ import { AppContext } from "../../store/appContext.js";
 import { useRouteMatch } from "react-router-dom";
 import CardCharacters from "../../components/CardCharacters/CardCharacters";
 import { AllCards, Container, H1 } from "./Styled.js";
+import { charactersToRenderBySearch } from "../../utils/charactersToRenderBySearch"
 
 export const SearchByURL = (props) => {
 	const { store, actions } = useContext(AppContext);
 	const match = useRouteMatch();
-	const charactersToRenderBySearch = (charactersToRender) => {
-		let charactersToRenderFilter = charactersToRender.filter((character) => {
-			let regEx = new RegExp(store.inputHeroe.trim(), "i");
-
-			if (character.name.search(regEx) != -1) {
-				return true;
-			} else {
-				return false;
-			}
-		});
-		return charactersToRenderFilter;
-	};
-
+	
 	useEffect(() => {
-		if (match.params.characters) {
+		if (match.params.characters) { //si hay parametro separamos por &
 			actions.fetchGetCharactersBySearch(match.params.characters.split("&"));
 		} else {
 			actions.fetchGetCharactersBySearch(match.params.characters);
 		}
 	}, []);
 
-	const filterComicsByURL = match.params.comics ? match.params.comics.split("&") : [];
+	const filterComicsByURL = match.params.comics ? match.params.comics.split("&") : []; //if there is no parameter leave empty
 
 	return (
 		<Fragment>
@@ -37,7 +26,7 @@ export const SearchByURL = (props) => {
 				<AllCards>
 					{store.searchByURL.done ? (
 						store.searchByURL.results.length !== 0 ? (
-							charactersToRenderBySearch(store.searchByURL.results).map((character) => {
+							charactersToRenderBySearch(store.searchByURL.results,store.inputHeroe).map((character) => {
 								return (
 									<CardCharacters
 										key={character.id}

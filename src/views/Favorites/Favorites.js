@@ -3,28 +3,16 @@ import PropTypes from "prop-types";
 import { AppContext } from "../../store/appContext.js";
 import CardCharacters from "../../components/CardCharacters/CardCharacters";
 import { AllCards, Container } from "./Styled.js";
+import { charactersToRenderBySearch } from "../../utils/charactersToRenderBySearch"
 
 export const Favorites = (props) => {
-	const { store, actions } = useContext(AppContext);
-
-	const charactersToRenderBySearch = (charactersToRender) => {
-		let charactersToRenderFilter = charactersToRender.filter((character) => {
-			let regEx = new RegExp(store.inputHeroe.trim(), "i");
-
-			if (character.name.search(regEx) != -1) {
-				return true;
-			} else {
-				return false;
-			}
-		});
-		return charactersToRenderFilter;
-	};
+	const { store } = useContext(AppContext);
 
 	return (
 		<Fragment>
 			<Container>
 				<AllCards>
-					{charactersToRenderBySearch(store.favorites.characters).map((character) => {
+					{charactersToRenderBySearch(store.favorites.characters,store.inputHeroe).map((character) => {
 						return (
 							<CardCharacters
 								key={character.id}
