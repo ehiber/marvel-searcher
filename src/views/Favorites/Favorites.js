@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { AppContext } from "../../store/appContext.js";
 import CardCharacters from "../../components/CardCharacters/CardCharacters";
 import { AllCards, Container } from "./Styled.js";
-import { charactersToRenderBySearch } from "../../utils/charactersToRenderBySearch"
+import { charactersToRenderBySearch } from "../../utils/charactersToRenderBySearch";
 
 export const Favorites = (props) => {
 	const { store } = useContext(AppContext);
@@ -12,7 +12,7 @@ export const Favorites = (props) => {
 		<Fragment>
 			<Container>
 				<AllCards>
-					{charactersToRenderBySearch(store.favorites.characters,store.inputHeroe).map((character) => {
+					{charactersToRenderBySearch(store.favorites.characters, store.inputHeroe).map((character) => {
 						return (
 							<CardCharacters
 								key={character.id}

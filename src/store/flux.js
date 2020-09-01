@@ -9,7 +9,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			characters: [], //saves all the characters to be rendered
-			searchByURL: { //save all the bucasdos characters by ulr to render
+			searchByURL: {
+				//save all the bucasdos characters by ulr to render
 				done: false,
 				results: []
 			},
@@ -17,7 +18,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			randomCharacterToRender: 0, //with this we will know which random character to render
 			comicsToRender: [],
 			comicToRender: { index: 0, redirect: false }, //used to render the preview of the comic
-			favorites: { //favorites also saved in the storage
+			favorites: {
+				//favorites also saved in the storage
 				characters: [],
 				comics: []
 			},
@@ -48,7 +50,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					otherTheme: store.theme
 				});
 			},
-			setFavoriteCharacter: (characters, action) => { //as appropriate add a new favorite or replace the entire list
+			setFavoriteCharacter: (characters, action) => {
+				//as appropriate add a new favorite or replace the entire list
 				let store = getStore();
 				if (action === "replace") {
 					setStore({
@@ -104,7 +107,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					comicToRender: { index: id, redirect: redirect }
 				});
 			},
-			setShowModal: (id, showModal, type) => { //used to display the character's mode according to the place where the action is requested
+			setShowModal: (id, showModal, type) => {
+				//used to display the character's mode according to the place where the action is requested
 				let store = getStore();
 
 				let charactersToMap = "";
@@ -151,9 +155,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let limit = getConfig().LIMIT_CHARACTERS;
 				let offset = 0; //skip the characters that are already in the store
 				let getAllCharacters = 15; //Rounds to get all characters
-				
+
 				try {
-					for (let i = 0; i < getAllCharacters; i++) { //15 fetch are made to bring all the characters 
+					for (let i = 0; i < getAllCharacters; i++) {
+						//15 fetch are made to bring all the characters
 						let response = await fetch(
 							`${APIurlMarvel}${resourceType}?ts=${timeStamp}&limit=${limit}&offset=${offset}&apikey=${APIpublicKey}&hash=${hash}`,
 							{
@@ -194,7 +199,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				let resourceType = getConfig().RESOURCE_TYPE;
 
-				if (name === undefined) { //if there is no parameter you can't do the search
+				if (name === undefined) {
+					//if there is no parameter you can't do the search
 					setStore({
 						searchByURL: {
 							done: true,

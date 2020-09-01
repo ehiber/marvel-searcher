@@ -4,14 +4,15 @@ import { AppContext } from "../../store/appContext.js";
 import { useRouteMatch } from "react-router-dom";
 import CardCharacters from "../../components/CardCharacters/CardCharacters";
 import { AllCards, Container, H1 } from "./Styled.js";
-import { charactersToRenderBySearch } from "../../utils/charactersToRenderBySearch"
+import { charactersToRenderBySearch } from "../../utils/charactersToRenderBySearch";
 
 export const SearchByURL = (props) => {
 	const { store, actions } = useContext(AppContext);
 	const match = useRouteMatch();
-	
+
 	useEffect(() => {
-		if (match.params.characters) { //si hay parametro separamos por &
+		if (match.params.characters) {
+			//si hay parametro separamos por &
 			actions.fetchGetCharactersBySearch(match.params.characters.split("&"));
 		} else {
 			actions.fetchGetCharactersBySearch(match.params.characters);
@@ -26,7 +27,7 @@ export const SearchByURL = (props) => {
 				<AllCards>
 					{store.searchByURL.done ? (
 						store.searchByURL.results.length !== 0 ? (
-							charactersToRenderBySearch(store.searchByURL.results,store.inputHeroe).map((character) => {
+							charactersToRenderBySearch(store.searchByURL.results, store.inputHeroe).map((character) => {
 								return (
 									<CardCharacters
 										key={character.id}

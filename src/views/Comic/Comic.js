@@ -4,12 +4,12 @@ import { useLocation } from "react-router-dom";
 import { ContentComic, FullDescription, Container, Img, H1 } from "./Styled.js";
 import { published } from "../../utils/published";
 
-const Comic = (props) => { 
+const Comic = (props) => {
 	const { store, actions } = useContext(AppContext);
 	const location = useLocation();
-	//equivalent to match.params for this function because when you enter a url having characters 
-	//like '/' you don't get what you expected, so it's only taken after one-comic/ 
-	const urlComicMarvel = location.pathname.slice(11); 
+	//equivalent to match.params for this function because when you enter a url having characters
+	//like '/' you don't get what you expected, so it's only taken after one-comic/
+	const urlComicMarvel = location.pathname.slice(11);
 	useEffect(() => {
 		//checking if it renders per store or per order in the url
 		if (store.comicsToRender.length > 0) {

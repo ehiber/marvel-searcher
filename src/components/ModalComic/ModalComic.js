@@ -16,8 +16,9 @@ const ModalComics = ({ nameCharacter, handleOuterClick = () => {}, filterComicsB
 
 	// filters the comics according to the search parameter with sensitive case and inclusive
 	const filterComicsByURLToRender = (filterComicsByURL) => {
-		if (filterComicsByURL.length < 1) { //if there is no search parameter we return all
-			return store.comicsToRender; 
+		if (filterComicsByURL.length < 1) {
+			//if there is no search parameter we return all
+			return store.comicsToRender;
 		} else {
 			let ComicsByURLToRender = store.comicsToRender.filter((comicStore) => {
 				for (let filter of filterComicsByURL) {
